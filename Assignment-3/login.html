@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <link rel="icon" href="images.jpeg">
+    <link rel="stylesheet" href="style-login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('login')">Login</div>
+                <div class="tab" onclick="switchTab('register')">Register</div>
+            </div>
+            
+            <div class="form-header">
+                <h2 id="form-title">Welcome Back</h2>
+                <p id="form-subtitle">Please enter your credentials to login</p>
+            </div>
+            
+            <div class="form-body">
+                <!-- Login Form -->
+                <div id="login-form" class="tab-content active">
+                    <form>
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+                </div>
+                
+                <!-- Register Form -->
+                <div id="register-form" class="tab-content">
+                    <form>
+                        <div class="form-group">
+                            <label for="register-name">Full Name</label>
+                            <input type="text" id="register-name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" placeholder="Create a password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm">Confirm Password</label>
+                            <input type="password" id="register-confirm" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="btn">Register</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="form-footer">
+                <p id="form-footer-text">Don't have an account? <a href="#" onclick="switchTab('register')">Register</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Update tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            if (tabName === 'login') {
+                document.querySelector('.tab:nth-child(1)').classList.add('active');
+                document.querySelector('.form-footer p').innerHTML = 'Don\'t have an account? <a href="#" onclick="switchTab(\'register\')">Register</a>';
+            } else {
+                document.querySelector('.tab:nth-child(2)').classList.add('active');
+                document.querySelector('.form-footer p').innerHTML = 'Already have an account? <a href="#" onclick="switchTab(\'login\')">Login</a>';
+            }
+            
+            // Update forms
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName + '-form').classList.add('active');
+            
+            // Update header
+            if (tabName === 'login') {
+                document.getElementById('form-title').textContent = 'Welcome Back';
+                document.getElementById('form-subtitle').textContent = 'Please enter your credentials to login';
+            } else {
+                document.getElementById('form-title').textContent = 'Create Account';
+                document.getElementById('form-subtitle').textContent = 'Fill in your details to get started';
+            }
+        }
+    </script>
+</body>
+</html>
